@@ -2,7 +2,7 @@ import Sequelize from 'sequelize';
 import dataBaseConfig from '../config/database';
 
 import User from '../app/Models/user';
-import Recipients from '../app/Models/Recipient';
+import Recipients from '../app/Models/recipient';
 
 const models = [User, Recipients];
 
