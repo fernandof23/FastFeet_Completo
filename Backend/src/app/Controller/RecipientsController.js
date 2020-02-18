@@ -78,6 +78,18 @@ class RecipientsController {
             return res.status(err.status).send(err.message);
         }
     }
+
+    async delete(req, res) {
+        try {
+            const recipient = await Recipients.findByPk(req.params.id);
+
+            await recipient.destroy();
+
+            return res.status(200).send();
+        } catch (err) {
+            return res.status(err.status).send(err.message);
+        }
+    }
 }
 
 export default new RecipientsController();

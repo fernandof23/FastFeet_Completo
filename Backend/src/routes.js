@@ -24,4 +24,6 @@ routes.post('/recipients', RecipientsController.store);
 routes.get('/recipients', RecipientsController.index);
 routes.get('/recipients/:id', RecipientsController.show);
 routes.put('/recipients/:id', RecipientsController.update);
+routes.delete('/recipients/:id', RecipientsController.delete);
+
 export default routes;
