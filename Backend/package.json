@@ -1,0 +1,21 @@
+{
+  "name": "FastFeet",
+  "version": "1.0.0",
+  "description": "Gerenciamento de Transportadora",
+  "main": "index.js",
+  "repository": "https://github.com/Hadesknight/FastFeet_Completo.git",
+  "author": "Fernando Santos",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "sucrase": "^3.12.1"
+  }
+}
