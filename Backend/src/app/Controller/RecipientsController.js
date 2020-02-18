@@ -36,6 +36,18 @@ class RecipientsController {
             return res.status(400).json({ Error: 'Create Recipient Fails' });
         }
     }
+
+    async show(req, res) {
+        try {
+            const { id } = req.params;
+
+            const recipient = await Recipients.findByPk(id);
+
+            return res.send(recipient);
+        } catch (err) {
+            return res.status(400).send(err.message);
+        }
+    }
 }
 
 export default new RecipientsController();
