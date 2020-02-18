@@ -23,4 +23,5 @@ routes.put('/users/', UserController.update);
 routes.post('/recipients', RecipientsController.store);
 routes.get('/recipients', RecipientsController.index);
 routes.get('/recipients/:id', RecipientsController.show);
+routes.put('/recipients/:id', RecipientsController.update);
 export default routes;
