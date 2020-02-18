@@ -30,7 +30,7 @@ class UserController {
 
             const { id, name, email, createdAt } = response;
 
-            return res.json({ id, name, email, createdAt });
+            return res.send({ id, name, email, createdAt });
         } catch (err) {
             return res.status(err.status).send(err);
         }
@@ -59,7 +59,7 @@ class UserController {
 
         try {
             const { email, oldPassword } = req.body;
-            console.log(req.userId);
+
             const user = await User.findByPk(req.userId);
 
             if (user.email !== email) {
@@ -78,7 +78,7 @@ class UserController {
 
             const response = await user.update(req.body);
 
-            return res.json({ response });
+            return res.send(response);
         } catch (err) {
             return res.status(401).json({ error: 'Update Failured' });
         }
