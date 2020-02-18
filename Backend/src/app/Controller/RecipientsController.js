@@ -43,6 +43,9 @@ class RecipientsController {
 
             const recipient = await Recipients.findByPk(id);
 
+            if (!recipient)
+                return res.status(404).json({ error: 'Recipient not found' });
+
             return res.send(recipient);
         } catch (err) {
             return res.status(400).send(err.message);
@@ -82,6 +85,9 @@ class RecipientsController {
     async delete(req, res) {
         try {
             const recipient = await Recipients.findByPk(req.params.id);
+
+            if (!recipient)
+                return res.status(404).json({ error: 'Recipient not found' });
 
             await recipient.destroy();
 
