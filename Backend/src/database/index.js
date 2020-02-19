@@ -6,7 +6,7 @@ import Recipients from '../app/Models/recipient';
 import File from '../app/Models/file';
 import Deliveryman from '../app/Models/deliveryman';
 
-const models = [User, Recipients, Deliveryman, File];
+const models = [User, Recipients, File, Deliveryman];
 
 class Database {
     constructor() {
@@ -16,12 +16,7 @@ class Database {
     init() {
         this.connection = new Sequelize(dataBaseConfig);
 
-        models
-            .map(model => model.init(this.connection))
-            .map(
-                model =>
-                    model.assiciate && model.associate(this.connection.models)
-            );
+        models.map(model => model.init(this.connection));
     }
 }
 
