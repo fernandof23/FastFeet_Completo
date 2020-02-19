@@ -1,6 +1,6 @@
 import * as Yup from 'yup';
-import Delivery from '../Models/deliveryman';
-import File from '../Models/file';
+import Delivery from '../Models/Deliveryman';
+import File from '../Models/File';
 
 class Deliveryman {
     async store(req, res) {
@@ -39,7 +39,11 @@ class Deliveryman {
                 where: {},
                 attributes: ['id', 'name', 'email', 'avatar_id'],
                 include: [
-                    { model: File, attributes: ['id', 'name', 'path', 'url'] },
+                    {
+                        model: File,
+                        as: 'avatar',
+                        attributes: ['id', 'name', 'path', 'url'],
+                    },
                 ],
             });
 

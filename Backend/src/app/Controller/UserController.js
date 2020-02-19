@@ -1,5 +1,5 @@
 import * as Yup from 'yup';
-import User from '../Models/user';
+import User from '../Models/User';
 
 class UserController {
     async store(req, res) {
