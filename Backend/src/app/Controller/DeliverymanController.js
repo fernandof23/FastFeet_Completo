@@ -15,11 +15,13 @@ class Deliveryman {
         try {
             const { email } = req.body;
 
-            console.log(email);
+            console.log(req.body);
 
-            const deliverymanExist = Delivery.findOne({ where: { email } });
+            const deliverymanExist = await Delivery.findOne({
+                where: { email },
+            });
 
-            if (deliverymanExist.length) {
+            if (deliverymanExist) {
                 return res
                     .status(401)
                     .json({ error: 'DeliveryMan alreay exist' });
@@ -30,6 +32,16 @@ class Deliveryman {
             return res.send(deliveryman);
         } catch (err) {
             return res.status(400).send(err.message);
+        }
+    }
+
+    async index(req, res) {
+        try {
+            const deliveryman = await Delivery.findAll();
+
+            return res.send(deliveryman);
+        } catch (err) {
+            return res.status(err.status).send(err.message);
         }
     }
 }

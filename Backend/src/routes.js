@@ -6,8 +6,8 @@ import multerConfig from './config/multer';
 import SessionController from './app/Controller/SessionController';
 import UserController from './app/Controller/UserController';
 import RecipientsController from './app/Controller/RecipientsController';
-import DeliverymanController from './app/Controller/Deliveryman';
-import FileController from './app/Controller/Files';
+import DeliverymanController from './app/Controller/DeliverymanController';
+import FileController from './app/Controller/FilesController';
 
 import authMiddlewares from './app/middlewares/auth';
 
@@ -37,5 +37,6 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 // deliveryman
 routes.post('/deliveryman', DeliverymanController.store);
+routes.get('/deliveryman', DeliverymanController.index);
 
 export default routes;
