@@ -6,7 +6,6 @@ class Deliveryman {
         const schema = Yup.object().shape({
             name: Yup.string().required(),
             email: Yup.string().required(),
-            avatar_id: Yup.number(),
         });
 
         if (!(await schema.isValid(req.body)))
@@ -15,10 +14,9 @@ class Deliveryman {
         try {
             const { email } = req.body;
 
-            console.log(req.body);
-
             const deliverymanExist = await Delivery.findOne({
                 where: { email },
+                attributes: ['id', 'name', 'email', 'avatar_id'],
             });
 
             if (deliverymanExist) {
@@ -37,7 +35,10 @@ class Deliveryman {
 
     async index(req, res) {
         try {
-            const deliveryman = await Delivery.findAll();
+            const deliveryman = await Delivery.findAll({
+                where: {},
+                attributes: ['id', 'name', 'email', 'avatar_id'],
+            });
 
             return res.send(deliveryman);
         } catch (err) {
