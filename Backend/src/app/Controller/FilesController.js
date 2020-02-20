@@ -9,7 +9,7 @@ class Files {
 
             return res.send(file);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 }

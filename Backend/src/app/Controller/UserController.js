@@ -32,7 +32,7 @@ class UserController {
 
             return res.send({ id, name, email, createdAt });
         } catch (err) {
-            return res.status(err.status).send(err);
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -80,7 +80,7 @@ class UserController {
 
             return res.send(response);
         } catch (err) {
-            return res.status(401).json({ error: 'Update Failured' });
+            return res.status(500).json({ error: 'Update Failured' });
         }
     }
 }

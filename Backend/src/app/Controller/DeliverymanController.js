@@ -49,7 +49,7 @@ class Deliveryman {
 
             return res.send(deliveryman);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -65,7 +65,7 @@ class Deliveryman {
 
             return res.send(deliveryman);
         } catch (err) {
-            return res.status(err.status).send(err.error);
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -105,7 +105,7 @@ class Deliveryman {
 
             return res.send(response);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -122,7 +122,7 @@ class Deliveryman {
 
             return res.send();
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 }

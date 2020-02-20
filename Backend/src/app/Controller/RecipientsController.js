@@ -23,7 +23,7 @@ class RecipientsController {
 
             return res.send(response);
         } catch (err) {
-            return res.status(err.status).json({ error: err.message });
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -33,7 +33,7 @@ class RecipientsController {
 
             return res.send(response);
         } catch (err) {
-            return res.status(400).json({ Error: 'Create Recipient Fails' });
+            return res.status(500).json({ Error: 'Create Recipient Fails' });
         }
     }
 
@@ -48,7 +48,7 @@ class RecipientsController {
 
             return res.send(recipient);
         } catch (err) {
-            return res.status(400).send(err.message);
+            return res.status(500).send(err.message);
         }
     }
 
@@ -78,7 +78,7 @@ class RecipientsController {
 
             return res.send(response);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 
@@ -93,7 +93,7 @@ class RecipientsController {
 
             return res.status(200).send();
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: err.message });
         }
     }
 }
