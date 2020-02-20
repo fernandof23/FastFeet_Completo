@@ -3,6 +3,8 @@ import Order from '../Models/Order';
 import Deliveryman from '../Models/Deliveryman';
 import Recipient from '../Models/Recipient';
 import File from '../Models/File';
+import CreateDelivery from '../jobs/CreateDelivery';
+import Mail from '../../lib/mail';
 
 class OrderController {
     async store(req, res) {
@@ -17,11 +19,36 @@ class OrderController {
         }
 
         try {
+            const { deliveryman_id, recipient_id } = req.body;
             const order = await Order.create(req.body);
+
+            const deliveryman = await Deliveryman.findOne({
+                where: { id: deliveryman_id },
+            });
+
+            const recipient = await Recipient.findOne({
+                where: { id: recipient_id },
+            });
+
+            await Mail.sendMail({
+                to: `${deliveryman.name}<${deliveryman.email}>`,
+                subject: 'Produto disponivel para Entrega!',
+                template: 'createDelivery',
+                context: {
+                    deliverymanName: deliveryman.name,
+                    recipientName: recipient.name,
+                    address: recipient.street,
+                    number: recipient.number,
+                    city: recipient.city,
+                    state: recipient.state,
+                    cep: recipient.cep,
+                    product: order.product,
+                },
+            });
 
             return res.send(order);
         } catch (err) {
-            return res.status(500).json({ error: 'Fail to update DB' });
+            return res.status(500).json({ error: 'Fail in create delivery' });
         }
     }
 
