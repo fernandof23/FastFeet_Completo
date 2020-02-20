@@ -164,6 +164,15 @@ class OrderController {
         const { id } = req.params;
 
         try {
+            const delivery = await Order.findByPk(id);
+
+            if (!delivery) {
+                return res.status(404).json({ error: 'Order not found' });
+            }
+
+            await delivery.destroy();
+
+            return res.send();
         } catch (err) {
             return res.status(500).json({ error: err.message });
         }
