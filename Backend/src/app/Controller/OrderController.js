@@ -1,5 +1,8 @@
 import * as Yup from 'yup';
 import Order from '../Models/Order';
+import Deliveryman from '../Models/Deliveryman';
+import Recipient from '../Models/Recipient';
+import File from '../Models/File';
 
 class OrderController {
     async store(req, res) {
@@ -17,6 +20,59 @@ class OrderController {
             const order = await Order.create(req.body);
 
             return res.send(order);
+        } catch (err) {
+            return res.status(err.status).send(err.message);
+        }
+    }
+
+    async index(req, res) {
+        try {
+            const delivery = await Order.findAll({
+                where: {},
+                attributes: [
+                    'id',
+                    'product',
+                    'deliveryman_id',
+                    'recipient_id',
+                    'signature_id',
+                    'canceled_at',
+                    'start_date',
+                    'end_date',
+                ],
+                include: [
+                    {
+                        model: Deliveryman,
+                        attributes: ['id', 'name', 'email', 'avatar_id'],
+                        include: [
+                            {
+                                model: File,
+                                as: 'avatar',
+                                attributes: ['id', 'name', 'path', 'url'],
+                            },
+                        ],
+                    },
+                    {
+                        model: Recipient,
+                        attributes: [
+                            'id',
+                            'name',
+                            'street',
+                            'number',
+                            'complement',
+                            'state',
+                            'city',
+                            'cep',
+                        ],
+                    },
+                    {
+                        model: File,
+                        as: 'Signature',
+                        attributes: ['id', 'name', 'path', 'url'],
+                    },
+                ],
+            });
+
+            return res.send(delivery);
         } catch (err) {
             return res.status(err.status).send(err.message);
         }
