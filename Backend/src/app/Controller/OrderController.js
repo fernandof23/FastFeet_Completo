@@ -3,8 +3,8 @@ import Order from '../Models/Order';
 import Deliveryman from '../Models/Deliveryman';
 import Recipient from '../Models/Recipient';
 import File from '../Models/File';
+import Queue from '../../lib/Queue';
 import CreateDelivery from '../jobs/CreateDelivery';
-import Mail from '../../lib/mail';
 
 class OrderController {
     async store(req, res) {
@@ -30,20 +30,10 @@ class OrderController {
                 where: { id: recipient_id },
             });
 
-            await Mail.sendMail({
-                to: `${deliveryman.name}<${deliveryman.email}>`,
-                subject: 'Produto disponivel para Entrega!',
-                template: 'createDelivery',
-                context: {
-                    deliverymanName: deliveryman.name,
-                    recipientName: recipient.name,
-                    address: recipient.street,
-                    number: recipient.number,
-                    city: recipient.city,
-                    state: recipient.state,
-                    cep: recipient.cep,
-                    product: order.product,
-                },
+            await Queue.add(CreateDelivery.key, {
+                deliveryman,
+                recipient,
+                order,
             });
 
             return res.send(order);

@@ -6,7 +6,7 @@ class CreateDelivery {
     }
 
     async handle({ data }) {
-        const { deliveryman, recipient, delivery } = data;
+        const { deliveryman, recipient, order } = data;
 
         await Mail.sendMail({
             to: `${deliveryman.name}<${deliveryman.email}>`,
@@ -20,7 +20,7 @@ class CreateDelivery {
                 city: recipient.city,
                 state: recipient.state,
                 cep: recipient.cep,
-                product: delivery.product,
+                product: order.product,
             },
         });
     }
