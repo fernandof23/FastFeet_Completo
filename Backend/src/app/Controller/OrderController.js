@@ -77,6 +77,61 @@ class OrderController {
             return res.status(err.status).send(err.message);
         }
     }
+
+    async show(req, res) {
+        const { id } = req.params;
+
+        try {
+            const delivery = await Order.findOne({
+                where: { id },
+                attributes: [
+                    'id',
+                    'product',
+                    'deliveryman_id',
+                    'recipient_id',
+                    'signature_id',
+                    'canceled_at',
+                    'start_date',
+                    'end_date',
+                ],
+                include: [
+                    {
+                        model: Deliveryman,
+                        attributes: ['id', 'name', 'email', 'avatar_id'],
+                        include: [
+                            {
+                                model: File,
+                                as: 'avatar',
+                                attributes: ['id', 'name', 'path', 'url'],
+                            },
+                        ],
+                    },
+                    {
+                        model: Recipient,
+                        attributes: [
+                            'id',
+                            'name',
+                            'street',
+                            'number',
+                            'complement',
+                            'state',
+                            'city',
+                            'cep',
+                        ],
+                    },
+                    {
+                        model: File,
+                        as: 'Signature',
+                        attributes: ['id', 'name', 'path', 'url'],
+                    },
+                ],
+            });
+
+            return res.send(delivery);
+        } catch (err) {
+            return res.status(500).json({ Error: 'Error to show Delivery' });
+        }
+    }
 }
 
 export default new OrderController();
