@@ -21,7 +21,7 @@ class OrderController {
 
             return res.send(order);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: 'Fail to update DB' });
         }
     }
 
@@ -74,7 +74,7 @@ class OrderController {
 
             return res.send(delivery);
         } catch (err) {
-            return res.status(err.status).send(err.message);
+            return res.status(500).json({ error: 'Fail to update DB' });
         }
     }
 
@@ -129,7 +129,43 @@ class OrderController {
 
             return res.send(delivery);
         } catch (err) {
-            return res.status(500).json({ Error: 'Error to show Delivery' });
+            return res.status(500).json({ error: 'Fail to acess DB' });
+        }
+    }
+
+    async update(req, res) {
+        const schema = Yup.object().shape({
+            recipient_id: Yup.number(),
+            deliveryman_id: Yup.number(),
+            product: Yup.string(),
+        });
+
+        if (!(await schema.isValid(req.body))) {
+            return res.status(401).json({ error: 'Validation Fails' });
+        }
+
+        try {
+            const { id } = req.params;
+            const delivery = await Order.findByPk(id);
+
+            if (!delivery) {
+                return res.status(404).json({ error: 'Delivery not found' });
+            }
+
+            const response = await delivery.update(req.body);
+
+            return res.send(response);
+        } catch (err) {
+            return res.status(500).json({ error: err.message });
+        }
+    }
+
+    async delete(req, res) {
+        const { id } = req.params;
+
+        try {
+        } catch (err) {
+            return res.status(500).json({ error: err.message });
         }
     }
 }
