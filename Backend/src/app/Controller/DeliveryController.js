@@ -1,12 +1,12 @@
 import * as Yup from 'yup';
-import Order from '../Models/Order';
+import Delivery from '../Models/Delivery';
 import Deliveryman from '../Models/Deliveryman';
 import Recipient from '../Models/Recipient';
 import File from '../Models/File';
 import Queue from '../../lib/Queue';
 import CreateDelivery from '../jobs/CreateDelivery';
 
-class OrderController {
+class DeliveryController {
     async store(req, res) {
         const schema = Yup.object().shape({
             recipient_id: Yup.number().required(),
@@ -20,7 +20,7 @@ class OrderController {
 
         try {
             const { deliveryman_id, recipient_id } = req.body;
-            const order = await Order.create(req.body);
+            const delivery = await Delivery.create(req.body);
 
             const deliveryman = await Deliveryman.findOne({
                 where: { id: deliveryman_id },
@@ -33,10 +33,10 @@ class OrderController {
             await Queue.add(CreateDelivery.key, {
                 deliveryman,
                 recipient,
-                order,
+                delivery,
             });
 
-            return res.send(order);
+            return res.send(delivery);
         } catch (err) {
             return res.status(500).json({ error: 'Fail in create delivery' });
         }
@@ -44,7 +44,7 @@ class OrderController {
 
     async index(req, res) {
         try {
-            const delivery = await Order.findAll({
+            const delivery = await Delivery.findAll({
                 where: {},
                 attributes: [
                     'id',
@@ -99,7 +99,7 @@ class OrderController {
         const { id } = req.params;
 
         try {
-            const delivery = await Order.findOne({
+            const delivery = await Delivery.findOne({
                 where: { id },
                 attributes: [
                     'id',
@@ -163,7 +163,7 @@ class OrderController {
 
         try {
             const { id } = req.params;
-            const delivery = await Order.findByPk(id);
+            const delivery = await Delivery.findByPk(id);
 
             if (!delivery) {
                 return res.status(404).json({ error: 'Delivery not found' });
@@ -181,10 +181,10 @@ class OrderController {
         const { id } = req.params;
 
         try {
-            const delivery = await Order.findByPk(id);
+            const delivery = await Delivery.findByPk(id);
 
             if (!delivery) {
-                return res.status(404).json({ error: 'Order not found' });
+                return res.status(404).json({ error: 'Delivery not found' });
             }
 
             await delivery.destroy();
@@ -196,4 +196,4 @@ class OrderController {
     }
 }
 
-export default new OrderController();
+export default new DeliveryController();
