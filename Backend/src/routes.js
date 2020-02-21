@@ -23,7 +23,11 @@ routes.post('/sessions', SessionController.store);
 routes.post('/users', UserController.store);
 
 // Routes for Deliverymans Acess only with ID in params
-routes.get('/deliverymanacess/:id', DeliverymanAcessController.index);
+routes.get('/deliverymanacess/:id/delivery', DeliverymanAcessController.index);
+routes.put(
+    '/deliverymanacess/:id/delivery/:delivery_id',
+    DeliverymanAcessController.update
+);
 
 // Routes with authenticate
 routes.use(authMiddlewares);
