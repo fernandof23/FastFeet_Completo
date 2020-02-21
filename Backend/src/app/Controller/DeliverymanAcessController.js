@@ -109,6 +109,7 @@ class DeliverymanAcessController {
             const finishTimeWork = setSeconds(setMinutes(setHours(startDate, 18), 0), 0)
 
 
+
             if (isBefore(startDate, startTimeWork) || isAfter(startDate, finishTimeWork)) {
                 return res.status(401).json({ error: "You can only pick up deliveries between 08:00am and 06:00pm " })
             }
@@ -123,7 +124,7 @@ class DeliverymanAcessController {
                 }
             })
 
-            if (deliveryiesStart.length >= 5) {
+            if (!delivery.start_date && deliveryiesStart.length >= 5) {
                 return res.status(401).json({ error: "You can pick up only 5 deliveries per day" })
             }
 
