@@ -10,6 +10,7 @@ import DeliverymanController from './app/Controller/DeliverymanController';
 import FileController from './app/Controller/FilesController';
 import DeliveryController from './app/Controller/DeliveryController';
 import DeliverymanAcessController from './app/Controller/DeliverymanAcessController';
+import DeliveryProblemController from './app/Controller/DeliveryProblemController';
 
 import authMiddlewares from './app/middlewares/auth';
 
@@ -29,6 +30,22 @@ routes.put(
     DeliverymanAcessController.update
 );
 
+// Router to deliveryman inform any problem
+routes.post(
+    '/deliverymanacess/:id/delivery/:delivery_id/problem',
+    DeliveryProblemController.store
+);
+
+/* routes.get(
+ *   '/deliverymanacess/:id/delivery/:delivery_id/problem',
+ *  DeliveryProblemController.show
+*);
+/*
+/*routes.put(
+ *   '/deliverymanacess/:id/delivery/:delivery_id/problem/:problem_id',
+ *   DeliveryProblemController.update
+*);
+*/
 // Routes with authenticate
 routes.use(authMiddlewares);
 
@@ -58,4 +75,7 @@ routes.get('/delivery/:id', DeliveryController.show);
 routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
 
+// route to company list all deliveries with problema
+// routes.get('/problem', DeliveryProblemController.index);
+// routes.delete('/problem/:delivery_id', DeliveryProblemController.delete);
 export default routes;
