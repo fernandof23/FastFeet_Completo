@@ -31,8 +31,11 @@ class RecipientsController {
     async index(req, res) {
         try {
             const { q } = req.query;
+            const { page = 1 } = req.query;
             const response = await Recipients.findAll({
                 where: q ? { name: { [Op.like]: `%${q}%` } } : {},
+                limit: 10,
+                offset: (page - 1) * 10,
             });
 
             return res.send(response);

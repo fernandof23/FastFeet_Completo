@@ -36,9 +36,12 @@ class Deliveryman {
 
     async index(req, res) {
         const { q } = req.query;
+        const { page = 1 } = req.query;
         try {
             const deliveryman = await Delivery.findAll({
                 where: q ? { name: { [Op.like]: `%${q}%` } } : {},
+                limit: 10,
+                offset: (page - 1) * 10,
                 attributes: ['id', 'name', 'email', 'avatar_id'],
                 include: [
                     {

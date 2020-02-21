@@ -45,10 +45,13 @@ class DeliveryController {
 
     async index(req, res) {
         const { q } = req.query;
+        const { page = 1 } = req.query;
 
         try {
             const delivery = await Delivery.findAll({
                 where: q ? { product: { [Op.like]: `%${q}%` } } : {},
+                limit: 10,
+                offset: (page - 1) * 10,
                 attributes: [
                     'id',
                     'product',
