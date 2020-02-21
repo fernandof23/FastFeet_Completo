@@ -1,7 +1,9 @@
 import * as Yup from 'yup';
 import Delivery from '../Models/Delivery';
-import Deliveryman from '../Models/Deliveryman';
 import DeliveryProblem from '../Models/DeliveryProblem';
+import Deliveryman from '../Models/Deliveryman';
+import Queue from '../../lib/Queue';
+import Cancellation from '../jobs/Cancellation';
 
 class DeliveryproblemController {
     async store(req, res) {
@@ -65,15 +67,32 @@ class DeliveryproblemController {
     }
 
     async delete(req, res) {
-        const { delivery_id } = req.params;
+        const { problem_id } = req.params;
 
         try {
+            const problem = await DeliveryProblem.findByPk(problem_id);
+
+            if (!problem) {
+                return res.status(404).json({ error: 'not found' });
+            }
+
+            const { delivery_id } = problem;
+
             const delivery = await Delivery.findByPk(delivery_id);
 
             const canceled_at = new Date();
 
             const response = await delivery.update({
                 canceled_at,
+            });
+
+            const deliveryman = await Deliveryman.findByPk(
+                delivery.deliveryman_id
+            );
+
+            await Queue.add(Cancellation.key, {
+                deliveryman,
+                delivery,
             });
 
             return res.send(response);
