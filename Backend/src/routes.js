@@ -9,6 +9,7 @@ import RecipientsController from './app/Controller/RecipientsController';
 import DeliverymanController from './app/Controller/DeliverymanController';
 import FileController from './app/Controller/FilesController';
 import DeliveryController from './app/Controller/DeliveryController';
+import DeliverymanAcessController from './app/Controller/DeliverymanAcessController';
 
 import authMiddlewares from './app/middlewares/auth';
 
@@ -20,6 +21,9 @@ routes.post('/sessions', SessionController.store);
 
 // Create Users
 routes.post('/users', UserController.store);
+
+// Routes for Deliverymans Acess only with ID in params
+routes.get('/deliverymanacess/:id', DeliverymanAcessController.index);
 
 // Routes with authenticate
 routes.use(authMiddlewares);
