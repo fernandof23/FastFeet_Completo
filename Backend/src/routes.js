@@ -36,16 +36,11 @@ routes.post(
     DeliveryProblemController.store
 );
 
-/* routes.get(
- *   '/deliverymanacess/:id/delivery/:delivery_id/problem',
- *  DeliveryProblemController.show
-*);
-/*
-/*routes.put(
- *   '/deliverymanacess/:id/delivery/:delivery_id/problem/:problem_id',
- *   DeliveryProblemController.update
-*);
-*/
+routes.get(
+    '/deliverymanacess/:id/delivery/:delivery_id/problem',
+    DeliveryProblemController.show
+);
+
 // Routes with authenticate
 routes.use(authMiddlewares);
 
@@ -76,6 +71,6 @@ routes.put('/delivery/:id', DeliveryController.update);
 routes.delete('/delivery/:id', DeliveryController.delete);
 
 // route to company list all deliveries with problema
-// routes.get('/problem', DeliveryProblemController.index);
+routes.get('/problem', DeliveryProblemController.index);
 // routes.delete('/problem/:delivery_id', DeliveryProblemController.delete);
 export default routes;
