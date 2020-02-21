@@ -16,7 +16,7 @@ import Delivery from '../Models/Delivery';
 import Recipient from '../Models/Recipient';
 
 class DeliverymanAcessController {
-    // async store(req, res) { }
+
 
     async index(req, res) {
         const { id } = req.params;
@@ -58,7 +58,7 @@ class DeliverymanAcessController {
         }
     }
 
-    // async show(req, res) { }
+
 
     async update(req, res) {
 
@@ -139,7 +139,7 @@ class DeliverymanAcessController {
 
     }
 
-    // async delete(req, res) { }
+
 }
 
 export default new DeliverymanAcessController();
