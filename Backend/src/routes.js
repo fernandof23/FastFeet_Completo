@@ -72,5 +72,5 @@ routes.delete('/delivery/:id', DeliveryController.delete);
 
 // route to company list all deliveries with problema
 routes.get('/problem', DeliveryProblemController.index);
-// routes.delete('/problem/:delivery_id', DeliveryProblemController.delete);
+routes.delete('/problem/:delivery_id', DeliveryProblemController.delete);
 export default routes;

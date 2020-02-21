@@ -64,7 +64,23 @@ class DeliveryproblemController {
         }
     }
 
-    // async delete(req, res) { }
+    async delete(req, res) {
+        const { delivery_id } = req.params;
+
+        try {
+            const delivery = await Delivery.findByPk(delivery_id);
+
+            const canceled_at = new Date();
+
+            const response = await delivery.update({
+                canceled_at,
+            });
+
+            return res.send(response);
+        } catch (err) {
+            return res.status(500).send(err.message);
+        }
+    }
 }
 
 export default new DeliveryproblemController();
