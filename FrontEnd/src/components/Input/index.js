@@ -15,7 +15,12 @@ export default function Input({ name, ...rest }) {
         });
     }, [fieldName, registerField]);
 
-    return <input ref={inputRef} {...rest} defaultValue={defaultValue} />;
+    return (
+        <>
+            <input ref={inputRef} {...rest} defaultValue={defaultValue} />
+            {error && <span>{error}</span>}
+        </>
+    );
 }
 
 Input.propTypes = {

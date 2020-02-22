@@ -1,7 +1,9 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useRef } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import * as Yup from 'yup';
 
 import { Form } from '@unform/web';
+import { signInRequest } from '~/store/modules/auth/actions';
 
 import Logo from '~/assets/logo.png';
 
@@ -11,12 +13,41 @@ import Input from '~/components/Input';
 
 export default function SignIn() {
     const loading = useSelector(state => state.auth.loading);
+    const formRef = useRef(null);
 
-    function handleSubmit() { }
+    const dispatch = useDispatch();
+
+    async function handleSubmit(data, { reset }) {
+        try {
+            const schema = Yup.object().shape({
+                email: Yup.string()
+                    .email('Insira um e-mail Valido')
+                    .required('e-mail obrigatório'),
+                password: Yup.string().required('Insira a senha'),
+            });
+
+            await schema.validate(data, { abortEarly: false });
+
+            const { email, password } = data;
+            dispatch(signInRequest(email, password));
+
+            reset();
+        } catch (err) {
+            if (err instanceof Yup.ValidationError) {
+                const errorMessages = {};
+                err.inner.forEach(error => {
+                    errorMessages[error.path] = error.message;
+                });
+
+                formRef.current.setErrors(errorMessages);
+            }
+        }
+    }
     return (
         <>
-            <img src={Logo} alt="GymPoint" />
-            <Form onSubmit={handleSubmit}>
+            <img src={Logo} alt="fastFeet" />
+
+            <Form ref={formRef} onSubmit={handleSubmit}>
                 <p>SEU E-MAIL</p>
                 <Input
                     name="email"
