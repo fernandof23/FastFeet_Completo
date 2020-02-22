@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { createStore, compose, applyMiddleware } from 'redux';
 
 export default (reducers, middlewares) => {
