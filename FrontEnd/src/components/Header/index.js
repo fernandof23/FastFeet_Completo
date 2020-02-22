@@ -1,10 +1,16 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Wrapper, Content, Botoes } from './styles';
 import logo from '~/assets/logo.png';
 
+import { signOut } from '~/store/modules/auth/actions';
+
 export default function Header() {
+    const dispatch = useDispatch();
+
+    const name = useSelector(state => state.user.profile);
     return (
         <Wrapper>
             <Content>
@@ -29,8 +35,8 @@ export default function Header() {
                 </div>
 
                 <aside>
-                    <p>Fernando Santos</p>
-                    <button type="button" onClick={() => { }}>
+                    <p>{name.name}</p>
+                    <button type="button" onClick={() => dispatch(signOut())}>
                         Sair do Sistema
                     </button>
                 </aside>
