@@ -19,16 +19,16 @@ export default function Header() {
                         <img src={logo} alt="FastFeet" />
                     </Link>
                     <Botoes>
-                        <Link to="/">
+                        <Link to="/delivery">
                             <p>ENCOMENDAS</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/deliveryman">
                             <p>ENTREGADORES</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/recipients">
                             <p>DESTINÁTARIOS</p>
                         </Link>
-                        <Link to="/">
+                        <Link to="/problems">
                             <p>PROBLEMAS</p>
                         </Link>
                     </Botoes>

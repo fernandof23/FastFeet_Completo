@@ -1,7 +1,13 @@
 import React from 'react';
 
 // import { Container } from './styles';
+import Header from '~/components/Header';
 
-export default function Recipients() {
-    return <h1>Recipients</h1>;
+export default function Delivery() {
+    return (
+        <>
+            <Header />
+            <h1>Teste</h1>
+        </>
+    );
 }
