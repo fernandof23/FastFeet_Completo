@@ -1,7 +1,11 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
+import { Form } from '@unform/web';
+
 import Logo from '~/assets/logo.png';
+
+import Input from '~/components/Input';
 
 // import { Container } from './styles';
 
@@ -12,15 +16,15 @@ export default function SignIn() {
     return (
         <>
             <img src={Logo} alt="GymPoint" />
-            <form onSubmit={handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <p>SEU E-MAIL</p>
-                <input
+                <Input
                     name="email"
                     type="email"
                     placeholder="exemplo@email.com"
                 />
                 <p>SUA SENHA</p>
-                <input
+                <Input
                     name="password"
                     type="password"
                     placeholder="*********"
@@ -29,7 +33,7 @@ export default function SignIn() {
                 <button type="submit">
                     {loading ? 'Aguarde ...' : 'Entrar no Sistema'}
                 </button>
-            </form>
+            </Form>
         </>
     );
 }
