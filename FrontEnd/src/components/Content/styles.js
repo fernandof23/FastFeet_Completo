@@ -3,7 +3,6 @@ import colors from '~/styles/colors';
 
 export const Wrapper = styled.div`
     margin: 20px 10px;
-    background: ${colors.write};
     padding: 20px;
     border-radius: 4px;
 
@@ -17,11 +16,6 @@ export const Wrapper = styled.div`
             color: ${colors.greyMedium};
         }
 
-        table,
-        th:first-child {
-            column-width: 300px;
-        }
-
         td,
         th {
             text-align: left;
@@ -32,8 +26,9 @@ export const Wrapper = styled.div`
             color: ${colors.greyMedium};
         }
 
-        tr + tr {
-            border-top: 1px solid #eee;
+        tr {
+            background: ${colors.write};
+            border-radius: 4px;
         }
 
         tr:hover {

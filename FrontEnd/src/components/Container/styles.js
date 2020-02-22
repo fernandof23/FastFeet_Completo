@@ -10,4 +10,9 @@ export const Wrapper = styled.div`
         color: ${colors.primary};
         margin-top: 0px;
     }
+
+    h1 {
+        font-size: 24px;
+        color: ${colors.greyStrong};
+    }
 `;

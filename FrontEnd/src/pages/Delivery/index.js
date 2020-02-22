@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-// import { Container } from './styles';
+import { MdAdd, MdSearch } from 'react-icons/md';
+
 import Header from '~/components/Header';
 import Container from '~/components/Container';
 import Content from '~/components/Content';
 import HeaderContent from '~/components/HeaderContent';
+import Button from '~/components/Button';
 
 import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
 
-export default function Delivery() {
-    const [delivery, setDelivery] = useState([]);
+// import { Container } from './styles';
 
+export default function Delivery() {
     const deliveryState = useSelector(state => state.delivery.delivery);
 
     useEffect(() => {
@@ -27,14 +29,75 @@ export default function Delivery() {
         <>
             <Header />
             <Container>
+                <h1>Gerenciando Encomendas</h1>
+                <HeaderContent>
+                    <div>
+                        <MdSearch size={20} color="#999" />
+                        <input
+                            type="search"
+                            name="search"
+                            placeholder="Buscar por Encomendas"
+                        />
+                    </div>
+
+                    <Button>
+                        <MdAdd size={20} color="#fff" fontWeight="bold" />
+                        CADASTRAR
+                    </Button>
+                </HeaderContent>
                 <Content>
-                    <HeaderContent>
-                        <h1>Gerenciando encomentas</h1>
-                        <div>
-                            <h1>teste</h1>
-                        </div>
-                    </HeaderContent>
-                    <h1>Teste</h1>
+                    <table>
+                        <thead>
+                            <th>ID</th>
+                            <th>Destinatário</th>
+                            <th>Entregador</th>
+                            <th>Cidade</th>
+                            <th>Estado</th>
+                            <th>Status</th>
+                            <th>Ações</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>#01</td>
+                                <td>Fernando Santos</td>
+                                <td>Bruno Rosa</td>
+                                <td>Capelinha </td>
+                                <td>Minas Gerais</td>
+                                <td>Entregue</td>
+                                <td>...</td>
+                            </tr>
+
+                            <tr>
+                                <td>#01</td>
+                                <td>Fernando Santos</td>
+                                <td>Bruno Rosa</td>
+                                <td>Capelinha </td>
+                                <td>Minas Gerais</td>
+                                <td>Entregue</td>
+                                <td>...</td>
+                            </tr>
+
+                            <tr>
+                                <td>#01</td>
+                                <td>Fernando Santos</td>
+                                <td>Bruno Rosa</td>
+                                <td>Capelinha </td>
+                                <td>Minas Gerais</td>
+                                <td>Entregue</td>
+                                <td>...</td>
+                            </tr>
+
+                            <tr>
+                                <td>#01</td>
+                                <td>Fernando Santos</td>
+                                <td>Bruno Rosa</td>
+                                <td>Capelinha </td>
+                                <td>Minas Gerais</td>
+                                <td>Entregue</td>
+                                <td>...</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </Content>
             </Container>
         </>

@@ -4,31 +4,25 @@ import colors from '~/styles/colors';
 export const Container = styled.div`
     display: flex;
     justify-content: space-between;
-
-    h1 {
-        font-size: 24px;
-        color: ${colors.greyStrong};
-    }
+    margin-top: 35px;
 
     div {
         display: flex;
+        align-items: center;
 
-        aside {
-            display: flex;
-            align-items: center;
-            border: 1px solid #eee;
-            background: ${colors.write};
-            border-radius: 4px;
-            margin-left: 16px;
-            padding: 0 10px;
+        background: ${colors.write};
 
-            input {
-                border: none;
-                height: 36px;
+        border: none;
+        height: 36px;
+        border: 1px solid #eee;
+        border-radius: 4px;
+        margin-left: 16px;
+        padding: 0 10px;
 
-                &::placeholder {
-                    color: ${colors.greyLow};
-                }
+        input {
+            border: none;
+            &::placeholder {
+                color: ${colors.greyLow};
             }
         }
     }
