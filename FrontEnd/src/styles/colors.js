@@ -9,5 +9,7 @@ export default {
     sucessLight: '#DFF0DF',
     sucess: '#42A42A',
 
-    textColor: '#444444',
+    greyStrong: '#444444',
+    greyMedium: '#666666',
+    greyLow: '#999999',
 };

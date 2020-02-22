@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as Yup from 'yup';
 
@@ -16,6 +16,10 @@ export default function SignIn() {
     const formRef = useRef(null);
 
     const dispatch = useDispatch();
+
+    useEffect(() => {
+        document.title = 'Login';
+    }, {});
 
     async function handleSubmit(data, { reset }) {
         try {
