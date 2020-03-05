@@ -56,6 +56,7 @@ export default function Delivery() {
                             <th>Status</th>
                             <th>Ações</th>
                         </thead>
+
                         <tbody>
                             <tr>
                                 <td>#01</td>
@@ -66,37 +67,12 @@ export default function Delivery() {
                                 <td>Entregue</td>
                                 <td>...</td>
                             </tr>
-
-                            <tr>
-                                <td>#01</td>
-                                <td>Fernando Santos</td>
-                                <td>Bruno Rosa</td>
-                                <td>Capelinha </td>
-                                <td>Minas Gerais</td>
-                                <td>Entregue</td>
-                                <td>...</td>
-                            </tr>
-
-                            <tr>
-                                <td>#01</td>
-                                <td>Fernando Santos</td>
-                                <td>Bruno Rosa</td>
-                                <td>Capelinha </td>
-                                <td>Minas Gerais</td>
-                                <td>Entregue</td>
-                                <td>...</td>
-                            </tr>
-
-                            <tr>
-                                <td>#01</td>
-                                <td>Fernando Santos</td>
-                                <td>Bruno Rosa</td>
-                                <td>Capelinha </td>
-                                <td>Minas Gerais</td>
-                                <td>Entregue</td>
-                                <td>...</td>
-                            </tr>
                         </tbody>
+
+                        <div>
+                            <td>#01</td>
+                            <td>Fernando</td>
+                        </div>
                     </table>
                 </Content>
             </Container>

@@ -10,7 +10,6 @@ export const Wrapper = styled.div`
         width: 100%;
         border-collapse: collapse;
 
-        table,
         th {
             font-size: 16px;
             color: ${colors.greyMedium};
@@ -22,12 +21,9 @@ export const Wrapper = styled.div`
             padding: 16px;
         }
 
-        td {
-            color: ${colors.greyMedium};
-        }
-
         tr {
             background: ${colors.write};
+            color: ${colors.greyMedium};
             border-radius: 4px;
         }
 

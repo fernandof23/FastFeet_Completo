@@ -18,7 +18,7 @@ export function* signIn({ payload }) {
 
         yield put(signInSucess(token, user));
 
-        history.push('/dashboard');
+        history.push('/');
     } catch (err) {
         toast.error('Falha na authenticação');
         yield put(signFailure());
