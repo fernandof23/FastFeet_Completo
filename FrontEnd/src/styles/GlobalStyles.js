@@ -10,6 +10,7 @@ export default createGlobalStyle`
     padding:0;
     outline:0;
     box-sizing:border-box;
+
 }
 
 *:focus{
@@ -22,6 +23,7 @@ body, html, #root {
 
 body {
     --webkit-font-smoothing: antialiased !important;
+
 }
 
 body, input, button {

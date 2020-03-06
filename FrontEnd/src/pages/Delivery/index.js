@@ -11,8 +11,6 @@ import Button from '~/components/Button';
 
 import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
 
-// import { Container } from './styles';
-
 export default function Delivery() {
     const deliveryState = useSelector(state => state.delivery.delivery);
 
@@ -61,18 +59,27 @@ export default function Delivery() {
                             <tr>
                                 <td>#01</td>
                                 <td>Fernando Santos</td>
-                                <td>Bruno Rosa</td>
-                                <td>Capelinha </td>
+                                <td>Bruno Lopes</td>
+                                <td>Capelinha</td>
                                 <td>Minas Gerais</td>
-                                <td>Entregue</td>
+                                <td>
+                                    <div>Entregue</div>
+                                </td>
+                                <td>...</td>
+                            </tr>
+
+                            <tr>
+                                <td>#01</td>
+                                <td>Fernando Santos</td>
+                                <td>Bruno Lopes</td>
+                                <td>Capelinha</td>
+                                <td>Minas Gerais</td>
+                                <td>
+                                    <div>Entregue</div>
+                                </td>
                                 <td>...</td>
                             </tr>
                         </tbody>
-
-                        <div>
-                            <td>#01</td>
-                            <td>Fernando</td>
-                        </div>
                     </table>
                 </Content>
             </Container>
