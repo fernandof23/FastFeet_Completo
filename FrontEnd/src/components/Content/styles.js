@@ -13,7 +13,6 @@ export const Wrapper = styled.div`
         th {
             font-size: 16px;
             color: ${colors.greyMedium};
-
         }
 
         td,
@@ -21,33 +20,33 @@ export const Wrapper = styled.div`
             text-align: left;
             padding: 20px 20px 20px;
 
-
             > div {
-                background: ${colors.primary};
-                color: ${colors.write};
-                width: 100px;
+                display: flex;
+                align-items: baseline;
+                justify-content: center;
+                background: #dff0df;
+                color: #2ca42b;
                 padding: 5px;
+                width: 120px;
                 border-radius: 15px;
                 font-weight: bold;
+                font-size: 14px;
             }
         }
 
-
-
         tr {
-            border-bottom:20px solid #f5f5f5;
+            border-bottom: 20px solid #f5f5f5;
             background: ${colors.write};
             color: ${colors.greyMedium};
-
         }
 
         tr:hover {
             background: #eee;
         }
 
-        td:nth-child(7){
-            width:10px;
-            text-align:right;
+        td:nth-child(7) {
+            width: 10px;
+            text-align: right;
         }
     }
 `;

@@ -12,4 +12,16 @@ export default {
     greyStrong: '#444444',
     greyMedium: '#666666',
     greyLow: '#999999',
+
+    greenStrong: #2CA42B,
+    greenLow: #DFF0DF,
+
+    yellowStrong: #C1BC35,
+    yellowLow: #F0F0DF,
+
+    blueStrong:#4D85EE,
+    blueLow:#BAD2FF,
+
+    redStrong:#DE3B3B,
+    redLow: #FAB0B0,
 };

@@ -11,6 +11,8 @@ import Button from '~/components/Button';
 
 import { loadDeliveryRequest } from '~/store/modules/delivery/actions';
 
+import { Status } from './styles';
+
 export default function Delivery() {
     const deliveryState = useSelector(state => state.delivery.delivery);
 
@@ -63,7 +65,10 @@ export default function Delivery() {
                                 <td>Capelinha</td>
                                 <td>Minas Gerais</td>
                                 <td>
-                                    <div>Entregue</div>
+                                    <div>
+                                        <Status />
+                                        ENTREGUE
+                                    </div>
                                 </td>
                                 <td>...</td>
                             </tr>
